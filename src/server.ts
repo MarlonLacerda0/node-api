@@ -1,11 +1,12 @@
-import express,{Express, Request, Response} from 'express';
+import express from 'express';
+import userRouter from './route/user';
 
-const app: Express = express();
+const app = express();
+const port = 3000;
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello World!')
-  })
+app.use(express.json());
+app.use('/users', userRouter);
 
-app.listen(3000, () => {
-  console.log(`App de exemplo esta rodando na porta ${3000}`)
-})
+app.listen(port, () => {
+  console.log(`Servidor rodando em http://localhost:${port}`);
+});
